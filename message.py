@@ -1,0 +1,437 @@
+class Message:
+    def __init__(self, raw_data):
+        self.raw_data = raw_data
+        self.content = self.create_msg()
+
+    def create_msg(self):
+        content = ""
+        for site, results in self.raw_data["sites"]:
+            content += f'<h4>{site}</h4><br><ul>'
+            for result in results:
+                content += f'<li>{result}</li>'
+            content += f'</ul>'
+
+#         msg = f"""
+#         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+# <html>
+#     <head>
+#         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+#         <title>Housearcher App</title>
+# 		<style type="text/css">
+# 			#outlook a{padding:0;
+# 			body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
+# 			body{-webkit-text-size-adjust:none;}
+# 			body{margin:0; padding:0;}
+# 			img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+# 			table td{border-collapse:collapse;}
+# 			#backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+# 			body, #backgroundTable{background-color:#FAFAFA;}
+# 			#templateContainer{border: 1px solid #DDDDDD;}
+# 			h1, .h1{
+# 				color:#202020;
+# 				display:block;
+# 				font-family:Arial;
+# 				font-size:34px;
+# 				font-weight:bold;
+# 				line-height:100%;
+# 				margin-top:0;
+# 				margin-right:0;
+# 				margin-bottom:10px;
+# 				margin-left:0;
+# 				text-align:left;
+# 			}
+# 			h2, .h2{
+# 				color:#202020;
+# 				display:block;
+# 				font-family:Arial;
+# 				font-size:30px;
+# 				font-weight:bold;
+# 				line-height:100%;
+# 				margin-top:0;
+# 				margin-right:0;
+# 				margin-bottom:10px;
+# 				margin-left:0;
+# 				text-align:left;
+# 			}
+# 			h3, .h3{
+# 				color:#202020;
+# 				display:block;
+# 				font-family:Arial;
+# 				font-size:26px;
+# 				font-weight:bold;
+# 				line-height:100%;
+# 				margin-top:0;
+# 				margin-right:0;
+# 				margin-bottom:10px;
+# 				margin-left:0;
+# 				text-align:left;
+# 			}
+# 			h4, .h4{
+# 				color:#202020;
+# 				display:block;
+# 				font-family:Arial;
+# 				font-size:22px;
+# 				font-weight:bold;
+# 				line-height:100%;
+# 				margin-top:0;
+# 				margin-right:0;
+# 				margin-bottom:10px;
+# 				margin-left:0;
+# 				text-align:left;
+# 			}
+# 			#templateHeader{
+# 				background-color:#FFFFFF;
+# 				border-bottom:0;
+# 			}
+# 			.headerContent{
+# 				color:#202020;
+# 				font-family:Arial;
+# 				font-size:34px;
+# 				font-weight:bold;
+# 				line-height:100%;
+# 				padding:0;
+# 				text-align:center;
+# 				vertical-align:middle;
+# 			}
+# 			.headerContent a:link, .headerContent a:visited, .headerContent a .yshortcuts {
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+# 			#headerImage{
+# 				height:auto;
+# 				max-width:600px !important;
+# 			}
+# 			#templateContainer, .bodyContent{
+# 				background-color:#FFFFFF;
+# 			}
+# 			.bodyContent div{
+# 				color:#505050;
+# 				font-family:Arial;
+# 				font-size:14px;
+# 				line-height:150%;
+# 				text-align:left;
+# 			}
+# 			.bodyContent div a:link, .bodyContent div a:visited, .bodyContent div a .yshortcuts {
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+# 			.bodyContent img{
+# 				display:inline;
+# 				height:auto;
+# 			}
+# 			.leftMidColumnContent{
+# 				background-color:#FFFFFF;
+# 			}
+# 			.leftMidColumnContent div{
+# 				color:#505050;
+# 				font-family:Arial;
+# 				font-size:14px;
+# 				line-height:150%;
+# 				text-align:left;
+# 			}
+# 			.leftMidColumnContent div a:link, .leftMidColumnContent div a:visited, .leftMidColumnContent div a .yshortcuts {
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+#
+# 			.leftMidColumnContent img{
+# 				display:inline;
+# 				height:auto;
+# 			}
+# 			.rightMidColumnContent{
+# 				background-color:#FFFFFF;
+# 			}
+# 			.rightMidColumnContent div{
+# 				color:#505050;
+# 				font-family:Arial;
+# 				font-size:14px;
+# 				line-height:150%;
+# 				text-align:left;
+# 			}
+# 			.rightMidColumnContent div a:link, .rightMidColumnContent div a:visited, .rightMidColumnContent div a .yshortcuts {
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+# 			.rightMidColumnContent img{
+# 				display:inline;
+# 				height:auto;
+# 			}
+# 			.leftLowerColumnContent{
+# 				background-color:#FFFFFF;
+# 			}
+# 			.leftLowerColumnContent div{
+# 				color:#505050;
+# 				font-family:Arial;
+# 				font-size:14px;
+# 				line-height:150%;
+# 				text-align:left;
+# 			}
+# 			.leftLowerColumnContent div a:link, .leftLowerColumnContent div a:visited, .leftLowerColumnContent div a .yshortcuts {
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+# 			.leftLowerColumnContent img{
+# 				display:inline;
+# 				height:auto;
+# 			}
+# 			.centerLowerColumnContent{
+# 				background-color:#FFFFFF;
+# 			}
+# 			.centerLowerColumnContent div{
+# 				color:#505050;
+# 				font-family:Arial;
+# 				font-size:14px;
+# 				line-height:150%;
+# 				text-align:left;
+# 			}
+# 			.centerLowerColumnContent div a:link, .centerLowerColumnContent div a:visited, .centerLowerColumnContent div a .yshortcuts {
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+# 			.centerLowerColumnContent img{
+# 				display:inline;
+# 				height:auto;
+# 			}
+# 			.rightLowerColumnContent{
+# 				background-color:#FFFFFF;
+# 			}
+# 			.rightLowerColumnContent div{
+# 				color:#505050;
+# 				font-family:Arial;
+# 				font-size:14px;
+# 				line-height:150%;
+# 				text-align:left;
+# 			}
+# 			.rightLowerColumnContent div a:link, .rightLowerColumnContent div a:visited, .rightLowerColumnContent div a .yshortcuts {
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+#
+# 			.rightLowerColumnContent img{
+# 				display:inline;
+# 				height:auto;
+# 			}
+# 			#templateFooter{
+# 				background-color:#FFFFFF;
+# 				border-top:0;
+# 			}
+# 			.footerContent div{
+# 				color:#707070;
+# 				font-family:Arial;
+# 				font-size:12px;
+# 				line-height:125%;
+# 				text-align:left;
+# 			}
+# 			.footerContent div a:link, .footerContent div a:visited, .footerContent div a .yshortcuts{
+# 				color:#336699;
+# 				font-weight:normal;
+# 				text-decoration:underline;
+# 			}
+# 			.footerContent img{
+# 				display:inline;
+# 			}
+# 		</style>
+# 	</head>
+#     <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+#     	<center>
+#         	<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+#             	<tr>
+#                 	<td align="center" valign="top">
+#                     	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer">
+#
+#                             <!-- // Begin Header \\ -->
+#                         	<tr>
+#                             	<td align="center" valign="top">
+#                                 	<table border="0" cellpadding="50" cellspacing="0" width="600" id="templateHeader">
+#                                         <tr>
+#                                             <td class="headerContent">
+#                                             	<img src="https://see.fontimg.com/api/renderfont4/OVoWO/eyJyIjoiZnMiLCJoIjo4NCwidyI6MTAwMCwiZnMiOjg0LCJmZ2MiOiIjMkYzRTgxIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/SG91c2VhcmNoIEFwcA/aloevera.png" style="max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+#                                             </td>
+#                                         </tr>
+#                                     </table>
+#                                 </td>
+#                             </tr>
+#                             <!-- // End Header \\ -->
+#
+#                             <!-- // Begin Body \\ -->
+#                         	<tr>
+#                             	<td align="center" valign="top">
+#                                 	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
+#                                     	<tr>
+#                                         	<td valign="top">
+#                                             	<table border="0" cellpadding="0" cellspacing="0" width="600">
+#                                                 	<tr>
+#                                                     	<td valign="top" class="bodyContent">
+#
+#                                                             <!-- // Begin Content \\ -->
+#                                                             <table border="0" cellpadding="20" cellspacing="0" width="100%">
+#                                                                 <tr>
+#                                                                     <td valign="top">
+#  			                                                            <div mc:edit="std_content00">
+# 			                                                                <h1 class="h1">Heading 1</h1>
+# 			                                                                <h2 class="h2">Heading 2</h2>
+# 			                                                                <h3 class="h3">Heading 3</h3>
+# 			                                                                <h4 class="h4">Heading 4</h4>
+# 			                                                                <strong>Getting started:</strong> Customize your template by clicking on the style editor tabs up above. Set your fonts, colors, and styles. After setting your styling is all done you can click here in this area, delete the text, and start adding your own awesome content!
+# 			                                                                <br />
+# 			                                                                <br />
+# 			                                                                After you enter your content, highlight the text you want to style and select the options you set in the style editor in the "styles" drop down box. Want to <a href="http://www.mailchimp.com/kb/article/im-using-the-style-designer-and-i-cant-get-my-formatting-to-change" target="_blank">get rid of styling on a bit of text</a>, but having trouble doing it? Just use the "remove formatting" button to strip the text of any formatting and reset your style.
+# 			                                                            </div>
+#                                                                     </td>
+#                                                                 </tr>
+#                                                             </table>
+#                                                             <!-- // End Content \\ -->
+#
+#                                                         </td>
+#                                                     </tr>
+#                                                 </table>
+#                                             </td>
+#                                         </tr>
+#                                         <tr>
+#                                         	<td valign="top">
+#                                             	<table border="0" cellpadding="0" cellspacing="0" width="600">
+#                                                 	<tr>
+#                                                         <td valign="top" width="280" class="leftMidColumnContent">
+#
+#                                                             <!-- // Begin Module: Top Image with Content \\ -->
+#                                                             <table border="0" cellpadding="20" cellspacing="0" width="100%">
+#                                                                 <tr mc:repeatable>
+#                                                                     <td valign="top">
+#                                                                         <img src="http://gallery.mailchimp.com/653153ae841fd11de66ad181a/images/placeholder_260.gif" style="max-width:260px;" mc:label="image" mc:edit="tiwc300_image00" />
+#                                                                         <div mc:edit="tiwc300_content00">
+# 			 	                                                            <h4 class="h4">Heading 4</h4>
+# 			                                                                <strong>Repeatable content blocks:</strong> Repeatable sections are noted with plus and minus signs so that you can add and subtract content blocks. You can also <a href="http://www.mailchimp.com/kb/article/how-do-i-work-with-repeatable-content-blocks" target="_blank">get a little fancy</a>: repeat blocks and remove all text to make image "gallery" sections, or do the opposite and remove images for text-only blocks!
+#                                                                         </div>
+#                                                                     </td>
+#                                                                 </tr>
+#                                                             </table>
+#                                                             <!-- // End Module: Top Image with Content \\ -->
+#
+#                                                         </td>
+#                                                         <td valign="top" width="280" class="rightMidColumnContent">
+#
+#                                                             <!-- // Begin Module: Top Image with Content \\ -->
+#                                                             <table border="0" cellpadding="20" cellspacing="0" width="100%">
+#                                                                 <tr mc:repeatable>
+#                                                                     <td valign="top">
+#                                                                         <img src="http://gallery.mailchimp.com/653153ae841fd11de66ad181a/images/placeholder_260.gif" style="max-width:260px;" mc:label="image" mc:edit="tiwc300_image01" />
+#                                                                         <div mc:edit="tiwc300_content01">
+# 																			<h4 class="h4">Heading 4</h4>
+# 			                                                                <strong>Repeatable content blocks:</strong> Repeatable sections are noted with plus and minus signs so that you can add and subtract content blocks. You can also <a href="http://www.mailchimp.com/kb/article/how-do-i-work-with-repeatable-content-blocks" target="_blank">get a little fancy</a>: repeat blocks and remove all text to make image "gallery" sections, or do the opposite and remove images for text-only blocks!
+#                                                                         </div>
+#                                                                     </td>
+#                                                                 </tr>
+#                                                             </table>
+#                                                             <!-- // End Module: Top Image with Content \\ -->
+#
+#                                                         </td>
+#                                                     </tr>
+#                                                 </table>
+#                                             </td>
+#                                         </tr>
+#                                     	<tr>
+#                                         	<td valign="top">
+#                                             	<table border="0" cellpadding="0" cellspacing="0" width="600">
+#                                                 	<tr>
+#                                                     	<td valign="top" width="180" class="leftLowerColumnContent">
+#
+#                                                             <!-- // Begin Module: Top Image with Content \\ -->
+#                                                             <table border="0" cellpadding="20" cellspacing="0" width="100%">
+#                                                                 <tr mc:repeatable>
+#                                                                     <td valign="top">
+#                                                                         <img src="http://gallery.mailchimp.com/653153ae841fd11de66ad181a/images/placeholder_160.gif" style="max-width:160px;" mc:label="image" mc:edit="tiwc200_image00" />
+#                                                                         <div mc:edit="tiwc200_content00">
+# 			 	                                                            <h4 class="h4">Heading 4</h4>
+# 			                                                                <strong>Repeatable content blocks:</strong> Repeatable sections are noted with plus and minus signs so that you can add and subtract content blocks. You can also <a href="http://www.mailchimp.com/kb/article/how-do-i-work-with-repeatable-content-blocks" target="_blank">get a little fancy</a>: repeat blocks and remove all text to make image "gallery" sections, or do the opposite and remove images for text-only blocks!
+#                                                                         </div>
+#                                                                     </td>
+#                                                                 </tr>
+#                                                             </table>
+#                                                             <!-- // End Module: Top Image with Content \\ -->
+#
+#                                                         </td>
+#                                                         <td valign="top" width="180" class="centerLowerColumnContent">
+#
+#                                                             <!-- // Begin Module: Top Image with Content \\ -->
+#                                                             <table border="0" cellpadding="20" cellspacing="0" width="100%">
+#                                                                 <tr mc:repeatable>
+#                                                                     <td valign="top">
+#                                                                         <img src="http://gallery.mailchimp.com/653153ae841fd11de66ad181a/images/placeholder_160.gif" style="max-width:160px;" mc:label="image" mc:edit="tiwc200_image01" />
+#                                                                         <div mc:edit="tiwc200_content01">
+# 			 	                                                           <h4 class="h4">Heading 4</h4>
+# 			                                                               <strong>Repeatable content blocks:</strong> Repeatable sections are noted with plus and minus signs so that you can add and subtract content blocks. You can also <a href="http://www.mailchimp.com/kb/article/how-do-i-work-with-repeatable-content-blocks" target="_blank">get a little fancy</a>: repeat blocks and remove all text to make image "gallery" sections, or do the opposite and remove images for text-only blocks!
+#                                                                         </div>
+#                                                                     </td>
+#                                                                 </tr>
+#                                                             </table>
+#                                                             <!-- // End Module: Top Image with Content \\ -->
+#
+#                                                         </td>
+#                                                         <td valign="top" width="180" class="rightLowerColumnContent">
+#
+#                                                             <!-- // Begin Module: Top Image with Content \\ -->
+#                                                             <table border="0" cellpadding="20" cellspacing="0" width="100%">
+#                                                                 <tr mc:repeatable>
+#                                                                     <td valign="top">
+#                                                                         <img src="http://gallery.mailchimp.com/653153ae841fd11de66ad181a/images/placeholder_160.gif" style="max-width:160px;" mc:label="image" mc:edit="tiwc200_image02" />
+#                                                                         <div mc:edit="tiwc200_content02">
+# 			 	                                                           <h4 class="h4">Heading 4</h4>
+# 			                                                               <strong>Repeatable content blocks:</strong> Repeatable sections are noted with plus and minus signs so that you can add and subtract content blocks. You can also <a href="http://www.mailchimp.com/kb/article/how-do-i-work-with-repeatable-content-blocks" target="_blank">get a little fancy</a>: repeat blocks and remove all text to make image "gallery" sections, or do the opposite and remove images for text-only blocks!
+#                                                                         </div>
+#                                                                     </td>
+#                                                                 </tr>
+#                                                             </table>
+#                                                             <!-- // End Module: Top Image with Content \\ -->
+#
+#                                                         </td>
+#                                                     </tr>
+#                                                 </table>
+#                                             </td>
+#                                         </tr>
+#                                     </table>
+#                                 </td>
+#                             </tr>
+#                             <!-- // End Body \\ -->
+#
+#                         	<tr>
+#                             	<td align="center" valign="top">
+#
+#                                     <!-- // Begin Footer \\ -->
+#                                 	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter">
+#                                     	<tr>
+#                                         	<td valign="top" class="footerContent">
+#                                                 <table border="0" cellpadding="10" cellspacing="0" width="100%">
+#                                                     <tr>
+#                                                         <td colspan="2" valign="middle" id="utility">
+#                                                             <div>
+#                                                                 <img src="https://studentloanhero.com/wp-content/uploads/best-real-estate-websites-640x300.jpg" style="max-width:600px;"/>
+#                                                             </div>
+#                                                         </td>
+#                                                     </tr>
+#                                                 </table>
+#                                             </td>
+#                                         </tr>
+#                                     </table>
+#                                     <!-- // End Footer \\ -->
+#
+#                                 </td>
+#                             </tr>
+#                         </table>
+#                         <br />
+#                     </td>
+#                 </tr>
+#             </table>
+#         </center>
+#     </body>
+# </html>
+#
+#         """
+
+        return content

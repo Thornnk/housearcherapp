@@ -1,0 +1,13 @@
+{
+  "mode": "buy",
+  "locations": [
+    "burgos>villimar-v1-v2-s3-s4-san-cristobal",
+    "burgos>illera",
+    "burgos",
+    "madrid"
+  ],
+  "house_types": ["new"],
+  "max_price": 150000,
+  "notifications": true,
+  "receiver_emails": ["hnezado@gmail.com"]
+}
